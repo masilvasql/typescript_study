@@ -40,3 +40,20 @@ console.log(possuiHobbies)
 
 let endereco:[string, number, string]= ["Av Principal", 99, "caixa d'água"]
 console.log(endereco)
+
+//enum
+enum  Cor {
+    Cinza, //0
+    Verde = 100, //sobreescrevendo valor padrão do enum
+    Azul // se o Enum for definido com valor fora do padrão, os demais valores a baixo do valor sobreescrito, será subsequente à ele ou seja, Azul será 101
+}
+
+let minhaCor = Cor.Cinza;
+console.log(minhaCor)
+console.log(Cor.Azul)
+
+//Tipo any - Tipo flexível, igual o java script
+let carro: any = "BMW"
+console.log(carro)
+carro = {marce:"BMW", ano:2018}
+console.log(carro)
