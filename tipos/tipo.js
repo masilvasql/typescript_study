@@ -150,3 +150,60 @@ var funcionario4 = {
     }
 };
 console.log(funcionario3, funcionario4);
+//union types
+var nota = 10;
+console.log("Minha nota \u00E9 " + nota);
+nota = '8.5';
+console.log("Minha nota \u00E9 " + nota);
+//checando tipos em RunTime
+var valor = 30;
+if (typeof valor === "number") {
+    console.log(" é Number");
+}
+else {
+    console.log(typeof valor);
+}
+//Tipo Never (Função que não possui um fim)
+function falha(msg) {
+    throw new Error(msg);
+}
+var produto = {
+    nome: "teste",
+    preco: 8,
+    validarProduto: function () {
+        if (!this.nome || this.nome.trim().length == 0) {
+            falha("Precisa Ter um nome");
+        }
+        if (this.preco <= 0) {
+            falha("Preço não pode ser menor ou igual a 0");
+        }
+    }
+};
+produto.validarProduto();
+//valores opcionais com tipo "null"
+var altura = 12;
+// altura = null
+//uma solução é utilizar o Union types
+var alturaOpcional = 12;
+alturaOpcional = null;
+var contato1 = {
+    nome: "Marcelo",
+    tel1: "123456789",
+    tel2: null
+};
+console.log(contato1);
+var podeSernulo = null;
+console.log("tipo nulo", typeof podeSernulo);
+var contaBancaria = {
+    saldo: 3456,
+    depositar: function (valor) {
+        this.saldo += valor;
+    }
+};
+var correntista = {
+    nome: 'Ana Silva',
+    contaBancaria: contaBancaria,
+    contatos: ['34567890', '98765432']
+};
+correntista.contaBancaria.depositar(3000);
+console.log(correntista);

@@ -145,7 +145,7 @@ let funcionario2 :{
     baterPonto2 : (hora:number) => string
 } = {
     nomeSupervisores:['Nome 1', 'Nome2'],
-    baterPonto2:(hora:number):string{
+    baterPonto2:(hora:number)=>{
         let retorno:string;
         if(hora <= 8){
             retorno = "Ponto normal";
@@ -168,7 +168,7 @@ type Funcionario = {
 
 let funcionario3 :Funcionario = {
     nomeSupervisores:['Bia', 'Carlos'],
-    baterPonto2:(hora:number):string{
+    baterPonto2:(hora:number)=>{
         let retorno:string;
         if(hora <= 8){
             retorno = "Ponto normal";
@@ -181,7 +181,7 @@ let funcionario3 :Funcionario = {
 
 let funcionario4 : Funcionario = {
     nomeSupervisores:['Bia', 'Carlos'],
-    baterPonto2:(hora:number):string{
+    baterPonto2:(hora:number)=>{
         let retorno:string;
         if(hora <= 8){
             retorno = "Ponto normal";
@@ -193,3 +193,91 @@ let funcionario4 : Funcionario = {
 }
 
 console.log(funcionario3, funcionario4)
+
+//union types
+let nota:number | string = 10
+console.log(`Minha nota é ${nota}`)
+nota = '8.5'
+console.log(`Minha nota é ${nota}`)
+
+//checando tipos em RunTime
+let valor = 30
+if(typeof valor === "number"){
+    console.log(" é Number")
+}else{
+    console.log(typeof valor)
+}
+
+//Tipo Never (Função que não possui um fim)
+function falha(msg:string): never{
+    throw new Error(msg);
+}
+const produto = {
+    nome:"teste",
+    preco:8,
+    validarProduto(){
+        if(!this.nome || this.nome.trim().length ==0){
+            falha("Precisa Ter um nome")
+        }
+        
+        if(this.preco <= 0){
+            falha("Preço não pode ser menor ou igual a 0")
+        }
+    }
+}
+
+produto.validarProduto();
+
+//valores opcionais com tipo "null"
+let altura = 12;
+// altura = null
+//uma solução é utilizar o Union types
+let alturaOpcional : null | number = 12;
+alturaOpcional = null
+
+type Contato = {
+    nome:string,
+    tel1:string,
+    tel2:string | null
+}
+
+const contato1 : Contato = {
+    nome:"Marcelo",
+    tel1:"123456789",
+    tel2:null
+}
+
+console.log(contato1)
+
+
+let podeSernulo = null;
+console.log("tipo nulo" , typeof podeSernulo)
+
+//desafio, transformar código JS em TS
+
+type ContaBancaria ={
+    saldo:number,
+    depositar:(valor:number)=>void
+}
+
+type Correntista = {
+    nome:string,
+    contaBancaria:ContaBancaria,
+    contatos:string[]
+}
+
+let contaBancaria:ContaBancaria = {
+    saldo: 3456,
+    depositar(valor:number) {
+        this.saldo += valor
+    }
+}
+ 
+let correntista:Correntista = {
+    nome: 'Ana Silva',
+    contaBancaria: contaBancaria,
+    contatos: ['34567890', '98765432']
+}
+ 
+correntista.contaBancaria.depositar(3000)
+console.log(correntista)
