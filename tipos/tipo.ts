@@ -254,7 +254,7 @@ let podeSernulo = null;
 console.log("tipo nulo" , typeof podeSernulo)
 
 //desafio, transformar código JS em TS
-
+  
 type ContaBancaria ={
     saldo:number,
     depositar:(valor:number)=>void
