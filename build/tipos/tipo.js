@@ -3,16 +3,16 @@
  * Atribuição por inferência
  */
 //string
-let nome = "João";
+var nome = "João";
 console.log(nome);
 //numer
-let idade = 27;
+var idade = 27;
 console.log(idade);
 //idade = "Ana"
 idade = 27.5;
 console.log(idade);
 //boolean
-let possuiHobbies = false;
+var possuiHobbies = false;
 //possuiHobbies = 1
 console.log(possuiHobbies);
 /**
@@ -20,17 +20,17 @@ console.log(possuiHobbies);
  *
  * caso não inicializar, a variável fica dinâmica (any)
  */
-let minhaIdade;
+var minhaIdade;
 minhaIdade = 27;
 console.log(minhaIdade);
 //minhaIdade = 'idade é 27'
 //array
-let hobbies = ["cozinhar", "Praticar esportes"];
+var hobbies = ["cozinhar", "Praticar esportes"];
 console.log(hobbies[0]);
 console.log(typeof hobbies);
 //hobbies = [100]
 //tuplas (array de qtd pré definida de tipos)
-let endereco = ["Av Principal", 99, "caixa d'água"];
+var endereco = ["Av Principal", 99, "caixa d'água"];
 console.log(endereco);
 //enum
 var Cor;
@@ -39,11 +39,11 @@ var Cor;
     Cor[Cor["Verde"] = 100] = "Verde";
     Cor[Cor["Azul"] = 101] = "Azul"; // se o Enum for definido com valor fora do padrão, os demais valores a baixo do valor sobreescrito, será subsequente à ele ou seja, Azul será 101
 })(Cor || (Cor = {}));
-let minhaCor = Cor.Cinza;
+var minhaCor = Cor.Cinza;
 console.log(minhaCor);
 console.log(Cor.Azul);
 //Tipo any - Tipo flexível, igual o java script
-let carro = "BMW";
+var carro = "BMW";
 console.log(carro);
 carro = { marce: "BMW", ano: 2018 };
 console.log(carro);
@@ -61,11 +61,11 @@ function multiplicar(numA, numB) {
 }
 console.log(multiplicar(2.25, 2));
 //tipo função
-let calculo;
+var calculo;
 calculo = multiplicar;
 console.log(calculo(5, 10));
 //objetos e tipos
-let usuario = {
+var usuario = {
     nome: 'João',
     idade: 27
 };
@@ -89,13 +89,13 @@ console.log(usuario);
  *     -> Ponto normal ( <=8 )
  *     -> Fora do horário (> 8)
  */
-let funcionario;
+var funcionario;
 funcionario = {
     nomeSupervisores: ['Marcelo', 'Joice', 'Rodrigo'],
     baterPonto: verificaPonto
 };
 function verificaPonto(hora) {
-    let retorno;
+    var retorno;
     if (hora <= 8) {
         retorno = "Ponto normal";
     }
@@ -107,10 +107,10 @@ function verificaPonto(hora) {
 console.log(funcionario);
 console.log(funcionario.baterPonto(8.5));
 /////// OOOOU PODE SER ASSIM
-let funcionario2 = {
+var funcionario2 = {
     nomeSupervisores: ['Nome 1', 'Nome2'],
-    baterPonto2: (hora) => {
-        let retorno;
+    baterPonto2: function (hora) {
+        var retorno;
         if (hora <= 8) {
             retorno = "Ponto normal";
         }
@@ -123,10 +123,10 @@ let funcionario2 = {
 console.log(funcionario2.nomeSupervisores);
 console.log(funcionario2.baterPonto2(8));
 console.log(funcionario2.baterPonto2(9.5));
-let funcionario3 = {
+var funcionario3 = {
     nomeSupervisores: ['Bia', 'Carlos'],
-    baterPonto2: (hora) => {
-        let retorno;
+    baterPonto2: function (hora) {
+        var retorno;
         if (hora <= 8) {
             retorno = "Ponto normal";
         }
@@ -136,10 +136,10 @@ let funcionario3 = {
         return retorno;
     }
 };
-let funcionario4 = {
+var funcionario4 = {
     nomeSupervisores: ['Bia', 'Carlos'],
-    baterPonto2: (hora) => {
-        let retorno;
+    baterPonto2: function (hora) {
+        var retorno;
         if (hora <= 8) {
             retorno = "Ponto normal";
         }
@@ -151,12 +151,12 @@ let funcionario4 = {
 };
 console.log(funcionario3, funcionario4);
 //union types
-let nota = 10;
-console.log(`Minha nota é ${nota}`);
+var nota = 10;
+console.log("Minha nota \u00E9 " + nota);
 nota = '8.5';
-console.log(`Minha nota é ${nota}`);
+console.log("Minha nota \u00E9 " + nota);
 //checando tipos em RunTime
-let valor = 30;
+var valor = 30;
 if (typeof valor === "number") {
     console.log(" é Number");
 }
@@ -167,10 +167,10 @@ else {
 function falha(msg) {
     throw new Error(msg);
 }
-const produto = {
+var produto = {
     nome: "teste",
     preco: 8,
-    validarProduto() {
+    validarProduto: function () {
         if (!this.nome || this.nome.trim().length == 0) {
             falha("Precisa Ter um nome");
         }
@@ -181,26 +181,26 @@ const produto = {
 };
 produto.validarProduto();
 //valores opcionais com tipo "null"
-let altura = 12;
+var altura = 12;
 // altura = null
 //uma solução é utilizar o Union types
-let alturaOpcional = 12;
+var alturaOpcional = 12;
 alturaOpcional = null;
-const contato1 = {
+var contato1 = {
     nome: "Marcelo",
     tel1: "123456789",
     tel2: null
 };
 console.log(contato1);
-let podeSernulo = null;
+var podeSernulo = null;
 console.log("tipo nulo", typeof podeSernulo);
-let contaBancaria = {
+var contaBancaria = {
     saldo: 3456,
-    depositar(valor) {
+    depositar: function (valor) {
         this.saldo += valor;
     }
 };
-let correntista = {
+var correntista = {
     nome: 'Ana Silva',
     contaBancaria: contaBancaria,
     contatos: ['34567890', '98765432']
